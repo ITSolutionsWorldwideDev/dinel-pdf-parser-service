@@ -30,6 +30,8 @@ app.post("/parse-pdf", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`PDF Parser Service running at http://localhost:${port}`);
-});
+export default app;
+
+// app.listen(port, () => {
+//   console.log(`PDF Parser Service running at http://localhost:${port}`);
+// });
