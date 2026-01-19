@@ -1,28 +1,23 @@
 // pdf-parser-service/index.ts
 import express from "express";
-import fileUpload from "express-fileupload";
+// import fileUpload from "express-fileupload";
+import multer from "multer";
 import pdfParse from "pdf-parse-new";
 
 const app = express();
 const port = 5000;
 
 // Enable file upload via multipart/form-data
-app.use(fileUpload());
+const upload = multer();
 
-// POST /parse-pdf
-app.post("/parse-pdf", async (req, res) => {
+
+app.post("/parse-pdf", upload.single("file"), async (req, res) => {
   try {
-    if (!req.files?.file) {
+    if (!req.file?.buffer) {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    const file = Array.isArray(req.files.file) ? req.files.file[0] : req.files.file;
-
-    if (!file || !file.data) {
-      return res.status(400).json({ error: "Invalid file" });
-    }
-
-    const data = await pdfParse(file.data);
+    const data = await pdfParse(req.file.buffer);
     return res.json({ text: data.text || "" });
   } catch (err) {
     console.error("PDF parsing failed", err);

@@ -9,12 +9,13 @@
   },
   "dependencies": {
     "express": "^5.2.1",
-    "express-fileupload": "^1.5.2",
+    "multer": "^2.0.2",
     "pdf-parse-new": "^2.0.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "@types/express-fileupload": "^1.5.1"
+    "@types/express-fileupload": "^1.5.1",
+    "@types/multer": "^2.0.0"
   }
 }
